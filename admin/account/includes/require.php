@@ -1,16 +1,14 @@
 <?php
 // Database parameters
+// define("DB_HOST",'localhost');
+// define("DB_USERNAME",'root');
+// define("DB_PASSWORD",'');
+// define("DB_NAME",'copywavex');
+
 define("DB_HOST",'localhost');
-define("DB_USERNAME",'u639032965_coach');
-define("DB_PASSWORD",'=HrQ)_TJh7Ua8bJ');
-define("DB_NAME",'u639032965_coachstormy');
-
-// Emailing parameters
-define("MAILER_DISPLAY_NAME",'  ');
-define("MAILER_LINK",'info@Stormystocks.com');
-define("MAILER_PASSWORD",'');
-
-define("Stormystocks",'Stormystocks.com');
+define("DB_USERNAME",'u279230863_copytrend');
+define("DB_PASSWORD",'NzwPqemiL0k?');
+define("DB_NAME",'u279230863_copytrend');
 
 include './includes/config.php';
 include './includes/admin.php';

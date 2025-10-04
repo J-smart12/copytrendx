@@ -3,14 +3,14 @@
 //     "host"=>"localhost",
 //     "username"=>"root",
 //     "password"=>"",
-//     "database_name"=>"dav"
+//     "database_name"=>"copywavex"
 // ];
 
 $DB_PARAMS = [
     "host"=>"localhost",
-    "username"=>"root",
-    "password"=>"",
-    "database_name"=>"copywavex"
+    "username"=>"u279230863_copytrend",
+    "password"=>"NzwPqemiL0k?",
+    "database_name"=>"u279230863_copytrend"
 ];
 
 class Database {

@@ -9,11 +9,12 @@ use PHPMailer\PHPMailer\Exception;
 
 class SMTPMESSAGING {
     private $db;
+
     private $MAILER_SETTINGS = [
         "host"=>"smtp.hostinger.com",
-        "password"=>"=HrQ)_TJh7Ua8bJ",
-        "username"=>"info@girlholdmyhandwithstormywellingtondigitalmasterclass.com",
-        "name"=>"Girlholdmyhand Digital Masterclass"
+        "password"=>"NzwPqemiL0k?",
+        "username"=>"support@copytrendx.com",
+        "name"=>"Copytrendx"
     ];
 
     function setEmailBody($body) {
