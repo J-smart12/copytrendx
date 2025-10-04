@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="config/manifiest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        /* Custom styles for the mobile frame */
+        .screen {
+            background: #f5f5f5;
+            position: relative;
+        }
+
+        .balance-bg {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-dark-bg text-black flex items-center justify-center h-screen overflow-hidden">
+    <div class="h-screen"></div>
+    <div class="screen h-full w-full flex flex-col overflow-hidden">
+        <div class="main flex-1 flex flex-col overflow-auto">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-2 py-4">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-orange-500 rounded-full mr-3 flex items-center justify-center">
+                        <span class="text-black font-semibold text-sm">CS</span>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold text-gray-900">Chad Smith</h2>
+                        <p class="text-sm text-gray-500">Follow Trader</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5-5-5h5v-12">
+                        </path>
+                    </svg>
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- List of Coins Section -->
+            <div class="px-2 flex-1">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Manage Coins</h3>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex space-x-2 mb-4 overflow-x-auto">
+                    <button class="px-4 py-2 bg-gray-800 text-white rounded-full text-sm whitespace-nowrap">Favorites</button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm whitespace-nowrap">Trending</button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm whitespace-nowrap">
+                        Market cap
+                    </button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm whitespace-nowrap">Price</button>
+                </div>
+
+                <!-- Coin List -->
+                <div class="w-full bg-sidebar-bg flex flex-col">
+                        <!-- Trading Pair Header -->
+                        <!-- <div class="p-4 border-b border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 bg-green-accent rounded-full flex items-center justify-center">
+                                        <span class="text-black font-bold text-xs">T</span>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center">
+                                            <span class="text-black font-semibold">TETUSDT</span>
+                                            <svg class="w-4 h-4 ml-1 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                                        </div>
+                                        <span class="text-xs text-black">Perpetual</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-black font-semibold">187.69</div>
+                                    <div class="text-green-accent text-xs">+10.12 (+5.71%)</div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-4 gap-4 text-xs">
+                                <div>
+                                    <div class="text-black">24h Price</div>
+                                    <div class="text-black">189.12</div>
+                                </div>
+                                <div>
+                                    <div class="text-black">24h Low</div>
+                                    <div class="text-black">181.07</div>
+                                </div>
+                                <div>
+                                    <div class="text-black">24h High</div>
+                                    <div class="text-black">194.14</div>
+                                </div>
+                                <div>
+                                    <div class="text-black">24h Volume</div>
+                                    <div class="text-black">8.59B</div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Search Bar -->
+                        <div class="">
+                            <div class="relative">
+                                <input type="text" placeholder="Search Coin" class="w-full text-black px-4 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                                <svg class="w-4 h-4 absolute right-3 top-2.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Tabs -->
+                        <!-- <div class="flex border-b border-gray-700">
+                            <button class="px-4 py-2 text-sm text-green-accent border-b-2 border-green-accent">USDT</button>
+                            <button class="px-4 py-2 text-sm text-black">USDC</button>
+                            <button class="px-4 py-2 text-sm text-black">USD</button>
+                            <button class="px-4 py-2 text-sm text-black">ETH</button>
+                            <button class="px-4 py-2 text-sm text-black">BTC</button>
+                        </div> -->
+
+                        <!-- Crypto List -->
+                        <div class="flex-1 overflow-y-auto scrollbar-hide">
+                            <!-- Crypto Items -->
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">N</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">NAX/USDT</div>
+                                            <div class="text-black text-xs">Vol 30.44M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">2.1167</div>
+                                        <div class="text-green-accent text-xs">+0.72%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">₿</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">BTC/USDT</div>
+                                            <div class="text-black text-xs">Vol 848.2M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm ">51,800.82</div>
+                                        <div class="text-green text-xs">+0.83%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">E</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">ETH/USDT</div>
+                                            <div class="text-black text-xs">Vol 285.6M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">3,475.23</div>
+                                        <div class="text-green-accent text-xs">+4.45%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">P</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">PEPE/USDT</div>
+                                            <div class="text-black text-xs">Vol 167.8M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">0.0001946</div>
+                                        <div class="text-green-accent text-xs">+4.84%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">A</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">ADA/USDT</div>
+                                            <div class="text-black text-xs">Vol 89.27M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">0.7332</div>
+                                        <div class="text-green-accent text-xs">+1.74%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">M</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">MECDF/USDT</div>
+                                            <div class="text-black text-xs">Vol 24.68M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">0.000000</div>
+                                        <div class="text-green-accent text-xs">+7.04%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">A</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">AVAX/USDT</div>
+                                            <div class="text-black text-xs">Vol 142.7M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">27.35</div>
+                                        <div class="text-green-accent text-xs">+8.26%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">L</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">LQNA/USDT</div>
+                                            <div class="text-black text-xs">Vol 5.98M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">0.1523</div>
+                                        <div class="text-red-accent text-xs">-6.23%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">S</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">SOL/USDT</div>
+                                            <div class="text-black text-xs">Vol 421.6M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">101.44</div>
+                                        <div class="text-green-accent text-xs">+0.71%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-item px-4 py-2 cursor-pointer">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+                                            <span class="text-black text-xs font-bold">T</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-black text-sm font-medium">TRX/USDT</div>
+                                            <div class="text-black text-xs">Vol 89.43M</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-black text-sm">0.1847</div>
+                                        <div class="text-red-accent text-xs">-1.32%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="left-0 right-0 bg-gray-900 p-4">
+            <div class="flex justify-between items-center">
+                <div class="flex flex-col items-center">
+                    <a href="./index.html" class="w-10 flex items-center justify-center mb-1">
+                        <i class="fa fa-home text-white"></i>
+                    </a>
+                    <!-- <span class="text-white">Home</span> -->
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <a href="./markets.html" class="w-10 flex items-center justify-center mb-1">
+                        <i class="fa fa-shop text-white"></i>
+                    </a>
+                    <!-- <span class="text-white">Markets</span> -->
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <a href="./trade.html" class="w-10 flex items-center justify-center mb-1">
+                        <i class="fa fa fa-line-chart fa-1x text-white"></i>
+                    </a>
+                    <!-- <span class="text-white">Trade</span> -->
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <a href="./profile.html" class="w-10 flex items-center justify-center mb-1">
+                        <i class="fa fa-user text-white"></i>
+                    </a>
+                    <!-- <span class="text-white">Profile</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // Toggle balance visibility
+        if (localStorage.getItem("balance") === "hidden") {
+            $("#tb").hide();
+            $("#tbn").show();
+        } else {
+            $("#tb").show();
+            $("#tbn").hide();
+        }
+        function toggleBalance() {
+            // use local storage to save the state
+            if (localStorage.getItem("balance") === "hidden") {
+                localStorage.setItem("balance", "visible");
+                $("#tb").show();
+                $("#tbn").hide();
+            } else {
+                localStorage.setItem("balance", "hidden");
+                $("#tb").hide();
+                $("#tbn").show();
+            }
+        }
+
+    </script>
+</body>
+
+</html>

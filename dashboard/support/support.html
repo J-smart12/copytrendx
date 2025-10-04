@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Crypto Trading App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .screen {
+            background: #f5f5f5;
+            position: relative;
+        }
+        .balance-bg {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+        }
+        .faq-item {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen overflow-hidden">
+    <div class="h-screen"></div>
+    <div class="screen h-full w-full flex flex-col overflow-hidden">
+        <div class="main flex-1 flex flex-col overflow-auto">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-4 py-4 border-b">
+                <div class="flex items-center">
+                    <a href="index.html" class="mr-3 text-gray-600">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h1 class="text-xl font-semibold">Support Center</h1>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="text-gray-600">
+                        <i class="far fa-bell"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="px-4 py-3">
+                <div class="relative">
+                    <input type="text" placeholder="Search help articles..." 
+                           class="w-full bg-white rounded-full py-3 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Quick Help -->
+            <div class="px-4 mb-6">
+                <h2 class="text-lg font-semibold mb-3">Quick Help</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="#" class="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-wallet text-blue-500"></i>
+                        </div>
+                        <span class="text-sm font-medium">Deposits</span>
+                    </a>
+                    <a href="#" class="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-money-bill-wave text-green-500"></i>
+                        </div>
+                        <span class="text-sm font-medium">Withdrawals</span>
+                    </a>
+                    <a href="#" class="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-shield-alt text-purple-500"></i>
+                        </div>
+                        <span class="text-sm font-medium">Security</span>
+                    </a>
+                    <a href="#" class="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-question-circle text-yellow-500"></i>
+                        </div>
+                        <span class="text-sm font-medium">FAQ</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="px-4 mb-6">
+                <h2 class="text-lg font-semibold mb-3">Frequently Asked Questions</h2>
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="faq-item p-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-medium">How do I reset my password?</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2 hidden">
+                            To reset your password, go to the login page and click on 'Forgot Password'. 
+                            Enter your email address and follow the instructions sent to your email.
+                        </p>
+                    </div>
+                    <div class="faq-item p-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-medium">How long do withdrawals take?</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2 hidden">
+                            Withdrawals are typically processed within 24 hours. However, processing times may vary 
+                            depending on network congestion and security checks.
+                        </p>
+                    </div>
+                    <div class="faq-item p-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-medium">Is my account secure?</h3>
+                            <i class="fas fa-chevron-down text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2 hidden">
+                            Yes, we use bank-level security measures including 2FA, cold storage for funds, 
+                            and regular security audits to ensure your account and assets are protected.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Support -->
+            <div class="px-4 mb-6">
+                <h2 class="text-lg font-semibold mb-3">Contact Support</h2>
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <p class="text-sm text-gray-600 mb-4">Can't find what you're looking for? Our support team is here to help.</p>
+                    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-headset mr-2"></i> Chat with Support
+                    </button>
+                    <div class="mt-4 text-center">
+                        <p class="text-sm text-gray-500">or email us at</p>
+                        <a href="mailto:support@copywavex.com" class="text-blue-500 font-medium">support@copywavex.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="left-0 right-0 bg-gray-900 p-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-home text-lg"></i>
+                    <span class="text-xs mt-1">Home</span>
+                </a>
+                <a href="markets.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-chart-line text-lg"></i>
+                    <span class="text-xs mt-1">Markets</span>
+                </a>
+                <a href="trade.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-exchange-alt text-lg"></i>
+                    <span class="text-xs mt-1">Trade</span>
+                </a>
+                <a href="miners.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-server text-lg"></i>
+                    <span class="text-xs mt-1">Miners</span>
+                </a>
+                <a href="support.html" class="flex flex-col items-center text-blue-400">
+                    <i class="fas fa-headset text-lg"></i>
+                    <span class="text-xs mt-1">Support</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Toggle FAQ answers
+        $(document).ready(function() {
+            $('.faq-item').click(function() {
+                $(this).find('p').slideToggle(200);
+                $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+            });
+        });
+    </script>
+</body>
+</html>

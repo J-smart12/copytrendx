@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="config/manifiest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1a1a',
+                        'sidebar-bg': '#2a2a2a',
+                        'green-accent': '#00d4aa',
+                        'red-accent': '#ff6b6b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+        }
+        .crypto-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .order-row:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white overflow-hidden">
+    <div class="flex h-screen">
+        <!-- Left Sidebar - Crypto List -->
+        <div class="w-80 bg-sidebar-bg flex flex-col hidden">
+            <!-- Trading Pair Header -->
+            <div class="p-4 border-b border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-green-accent rounded-full flex items-center justify-center">
+                            <span class="text-black font-bold text-xs">T</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center">
+                                <span class="text-white font-semibold">TETUSDT</span>
+                                <svg class="w-4 h-4 ml-1 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+                            </div>
+                            <span class="text-xs text-gray-400">Perpetual</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-white font-semibold">187.69</div>
+                        <div class="text-green-accent text-xs">+10.12 (+5.71%)</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-4 gap-4 text-xs">
+                    <div>
+                        <div class="text-gray-400">24h Price</div>
+                        <div class="text-white">189.12</div>
+                    </div>
+                    <div>
+                        <div class="text-gray-400">24h Low</div>
+                        <div class="text-white">181.07</div>
+                    </div>
+                    <div>
+                        <div class="text-gray-400">24h High</div>
+                        <div class="text-white">194.14</div>
+                    </div>
+                    <div>
+                        <div class="text-gray-400">24h Volume</div>
+                        <div class="text-white">8.59B</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="p-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search Coin" class="w-full bg-gray-800 text-white px-4 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                    <svg class="w-4 h-4 absolute right-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-gray-700">
+                <button class="px-4 py-2 text-sm text-green-accent border-b-2 border-green-accent">USDT</button>
+                <button class="px-4 py-2 text-sm text-gray-400">USDC</button>
+                <button class="px-4 py-2 text-sm text-gray-400">USD</button>
+                <button class="px-4 py-2 text-sm text-gray-400">ETH</button>
+                <button class="px-4 py-2 text-sm text-gray-400">BTC</button>
+            </div>
+
+            <!-- Crypto List -->
+            <div class="flex-1 overflow-y-auto scrollbar-hide">
+                <!-- Crypto Items -->
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">N</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">NAX/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 30.44M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">2.1167</div>
+                            <div class="text-green-accent text-xs">+0.72%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">₿</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">BTC/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 848.2M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">51,800.82</div>
+                            <div class="text-green-accent text-xs">+0.83%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">E</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">ETH/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 285.6M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">3,475.23</div>
+                            <div class="text-green-accent text-xs">+4.45%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">P</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">PEPE/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 167.8M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">0.0001946</div>
+                            <div class="text-green-accent text-xs">+4.84%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">A</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">ADA/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 89.27M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">0.7332</div>
+                            <div class="text-green-accent text-xs">+1.74%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">M</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">MECDF/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 24.68M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">0.000000</div>
+                            <div class="text-green-accent text-xs">+7.04%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">A</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">AVAX/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 142.7M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">27.35</div>
+                            <div class="text-green-accent text-xs">+8.26%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">L</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">LQNA/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 5.98M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">0.1523</div>
+                            <div class="text-red-accent text-xs">-6.23%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">S</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">SOL/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 421.6M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">101.44</div>
+                            <div class="text-green-accent text-xs">+0.71%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crypto-item px-4 py-2 cursor-pointer">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">T</span>
+                            </div>
+                            <div>
+                                <div class="text-white text-sm font-medium">TRX/USDT</div>
+                                <div class="text-gray-400 text-xs">Vol 89.43M</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-white text-sm">0.1847</div>
+                            <div class="text-red-accent text-xs">-1.32%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Trading Area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Chart Tabs -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-gray-700">
+                <div class="flex items-center space-x-6">
+                    <button class="text-green-accent border-b-2 border-green-accent pb-2">Chart</button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-gray-400 text-sm">Price</span>
+                        <span class="text-white text-sm">Change</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Area -->
+            <div class="flex-1 flex">
+                <!-- Trading Chart -->
+                <div class="flex-1 relative bg-gray-900">
+                    <!-- Chart would go here - simplified representation -->
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container" style="height:100%;width:100%">
+                        <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener nofollow" target="_blank"><span class="blue-text">AAPL stock chart</span></a><span class="trademark"> by TradingView</span></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                        {
+                        "allow_symbol_change": true,
+                        "calendar": false,
+                        "details": false,
+                        "hide_side_toolbar": true,
+                        "hide_top_toolbar": false,
+                        "hide_legend": false,
+                        "hide_volume": false,
+                        "hotlist": false,
+                        "interval": "D",
+                        "locale": "en",
+                        "save_image": true,
+                        "style": "1",
+                        "symbol": "NASDAQ:AAPL",
+                        "theme": "dark",
+                        "timezone": "Etc/UTC",
+                        "backgroundColor": "#0F0F0F",
+                        "gridColor": "rgba(242, 242, 242, 0.06)",
+                        "watchlist": [],
+                        "withdateranges": false,
+                        "compareSymbols": [],
+                        "studies": [],
+                        "autosize": true
+                        }
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+
+                <!-- Right Panel - Order Book & Trading -->
+                <div class="w-80 border-l border-gray-700 flex flex-col">
+                    <!-- Order Book Header -->
+                    <div class="p-4 border-b border-gray-700">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-white font-medium">Order Book</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-gray-400 text-xs">Market Trading</span>
+                                <span class="text-green-accent text-xs">Spot</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>Price</span>
+                            <span>Quantity (USDT)</span>
+                            <span>Total (USDT)</span>
+                        </div>
+                    </div>
+
+                    <!-- Trading Panel -->
+                    <form class="border-t border-gray-700 p-4">
+                        <div class="flex space-x-2 mb-4">
+                            <button class="flex-1 bg-green-accent text-black py-2 rounded font-medium" type="button" name="buy">Buy</button>
+                            <button class="flex-1 bg-red-700 text-white py-2 rounded" type="button" name="sell">Sell</button>
+                        </div>
+                        
+                        <div class="space-y-3 text-sm">
+                            
+                            <div>
+                                <div class="text-gray-400 text-xs mb-1">Available</div>
+                                <div class="text-white">$0.4509</div>
+                            </div>
+                            
+                            <div>
+                                <div class="text-gray-400 text-xs mb-1">Amount</div>
+                                <div class="text-white"></div>
+                                <input type="text" placeholder="0.0000" class="w-full bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                            </div>
+                            
+                            <div>
+                                <div class="text-gray-400 text-xs mb-1">Leverage</div>
+                                <select class="w-full bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                                    <option>1x</option>
+                                    <option>5x</option>
+                                    <option>10x</option>
+                                    <option>20x</option>
+                                    <option>50x</option>
+                                    <option>75x</option>
+                                    <option>100x</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <div class="text-gray-400 text-xs mb-1">Margin</div>
+                                <input type="text" placeholder="75%" class="w-full bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                            </div>
+                            
+                            <div>
+                                <div class="text-gray-400 text-xs mb-1">TP</div>
+                                <input type="text" placeholder="75%" class="w-full bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                            </div>
+                            
+                            <div>
+                                <div class="text-gray-400 text-xs mb-1">SL</div>
+                                <input type="text" placeholder="75%" class="w-full bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-green-accent outline-none text-sm">
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-2">
+                            <a href="./trade_history.html" class="block text-green-accent text-xs w-full text-black py-3 rounded font-medium mt-4">History</a>
+                        </div>
+                        
+                        <div class="mt-4 space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-gray-400">Margin: 0.00006 * Lever: 0.00006</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-gray-400">TP/SL</span>
+                                <span class="text-blue-400">USD</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-gray-400">Deposit</span>
+                                <span class="text-gray-400">Deposit</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

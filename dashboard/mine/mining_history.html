@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining History - Crypto Trading App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .screen {
+            background: #f5f5f5;
+            position: relative;
+        }
+        .balance-bg {
+            background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+        }
+        .mining-stats-card {
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .transaction-item {
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        .chart-container {
+            height: 200px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen overflow-hidden">
+    <div class="h-screen"></div>
+    <div class="screen h-full w-full flex flex-col overflow-hidden">
+        <div class="main flex-1 flex flex-col overflow-auto">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-4 py-4 border-b sticky top-0 bg-white z-10">
+                <div class="flex items-center">
+                    <a href="miners.html" class="mr-3 text-gray-600">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h1 class="text-xl font-semibold">Mining History</h1>
+                </div>
+                <button class="text-blue-500 text-sm font-medium">Filter</button>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="px-4 py-4">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white rounded-xl p-4 shadow-sm">
+                        <p class="text-sm text-gray-500">Total Mined</p>
+                        <p class="text-2xl font-bold">0.0428 <span class="text-base font-normal">BTC</span></p>
+                        <p class="text-xs text-green-500 mt-1">≈ $1,712.00</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm">
+                        <p class="text-sm text-gray-500">24h Rewards</p>
+                        <p class="text-2xl font-bold">0.0012 <span class="text-base font-normal">BTC</span></p>
+                        <p class="text-xs text-green-500 mt-1">+2.4% from yesterday</p>
+                    </div>
+                </div>
+
+                <!-- Time Range Selector -->
+                <div class="flex bg-gray-100 p-1 rounded-xl mb-4">
+                    <button class="flex-1 py-2 text-xs font-medium rounded-lg">24h</button>
+                    <button class="flex-1 py-2 text-xs font-medium bg-white rounded-lg shadow-sm">Week</button>
+                    <button class="flex-1 py-2 text-xs font-medium rounded-lg">Month</button>
+                    <button class="flex-1 py-2 text-xs font-medium rounded-lg">Year</button>
+                </div>
+
+                <!-- Mining Chart -->
+                <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-medium">Mining Rewards</h3>
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-blue-500 mr-1"></span>
+                            <span class="text-xs text-gray-500">BTC</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <!-- Chart will be rendered here by Chart.js -->
+                        <canvas id="miningChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="px-4 flex-1">
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-medium">Reward History</h3>
+                    <button class="text-blue-500 text-sm">See All</button>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <!-- Transaction Item -->
+                    <div class="transaction-item px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-coins text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Mining Reward</p>
+                                    <p class="text-xs text-gray-500">Today, 08:42 AM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">+0.00042 BTC</p>
+                                <p class="text-xs text-green-500">Confirmed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Item -->
+                    <div class="transaction-item px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-coins text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Mining Reward</p>
+                                    <p class="text-xs text-gray-500">Yesterday, 08:15 AM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">+0.00038 BTC</p>
+                                <p class="text-xs text-green-500">Confirmed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Item -->
+                    <div class="transaction-item px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-coins text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Mining Reward</p>
+                                    <p class="text-xs text-gray-500">2 days ago, 07:58 AM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">+0.00045 BTC</p>
+                                <p class="text-xs text-green-500">Confirmed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Item -->
+                    <div class="transaction-item px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-coins text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Mining Reward</p>
+                                    <p class="text-xs text-gray-500">3 days ago, 09:12 AM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">+0.00051 BTC</p>
+                                <p class="text-xs text-green-500">Confirmed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transaction Item -->
+                    <div class="transaction-item px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-coins text-green-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Mining Reward</p>
+                                    <p class="text-xs text-gray-500">4 days ago, 08:30 AM</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">+0.00039 BTC</p>
+                                <p class="text-xs text-green-500">Confirmed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="left-0 right-0 bg-gray-900 p-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-home text-lg"></i>
+                    <span class="text-xs mt-1">Home</span>
+                </a>
+                <a href="markets.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-chart-line text-lg"></i>
+                    <span class="text-xs mt-1">Markets</span>
+                </a>
+                <a href="trade.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-exchange-alt text-lg"></i>
+                    <span class="text-xs mt-1">Trade</span>
+                </a>
+                <a href="miners.html" class="flex flex-col items-center text-blue-400">
+                    <i class="fas fa-server text-lg"></i>
+                    <span class="text-xs mt-1">Miners</span>
+                </a>
+                <a href="profile.html" class="flex flex-col items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-user text-lg"></i>
+                    <span class="text-xs mt-1">Profile</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize chart
+            const ctx = document.getElementById('miningChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'BTC Mined',
+                        data: [0.00035, 0.00042, 0.00038, 0.00045, 0.00051, 0.00039, 0.00042],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#3b82f6',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#1f2937',
+                            titleFont: { size: 12 },
+                            bodyFont: { size: 14, weight: '600' },
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.parsed.y.toFixed(5) + ' BTC';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        y: {
+                            display: false,
+                            beginAtZero: true
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+
+            // Time range filter
+            $('.time-range-btn').click(function() {
+                $('.time-range-btn').removeClass('bg-white shadow-sm');
+                $(this).addClass('bg-white shadow-sm');
+                // Here you would update the chart data based on the selected time range
+            });
+        });
+    </script>
+    <style>
+        /* Dark mode styles */
+        .dark .bg-white {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        .dark .text-gray-500 {
+            color: #9ca3af;
+        }
+        .dark .bg-gray-100 {
+            background-color: #111827;
+        }
+        .dark .transaction-item {
+            border-color: #374151;
+        }
+        .dark .chart-container {
+            background-color: #1f2937;
+        }
+        .dark .time-range-btn {
+            color: #9ca3af;
+        }
+        .dark .time-range-btn.bg-white {
+            background-color: #374151;
+            color: #f9fafb;
+        }
+    </style>
+</body>
+</html>
