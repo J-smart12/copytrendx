@@ -416,6 +416,30 @@ class DB {
             return false;
         }
     }
+
+    // public function getFavCoins($userid) {
+    //     $res = $this->select('fav_coins',[
+    //         "select"=>"*",
+    //         "logic"=>[
+    //             "data"=>[
+    //                 "userid" => $userid
+    //             ]
+    //         ]
+    //     ]);
+    //     if($res) {
+    //         $favCoins = $this->fetchAll( $res );
+
+    //         return [
+    //             "count"=>$favCoins?count($favCoins):0,
+    //             "favCoins"=>$favCoins
+    //         ];
+    //     }else{
+    //         return [
+    //             "count"=>0,
+    //             "favCoins"=>[]
+    //         ];
+    //     }
+    // }
 }
 
 $db = new DB();

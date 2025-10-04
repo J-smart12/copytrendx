@@ -10,6 +10,8 @@ require_once '../includes/db.php';
 
 $profile = $db->getUser($_SESSION['user']);
 
+// $favCoins = $db->getFavCoins($_SESSION['user']);
+
 
 ?>
 <!DOCTYPE html>
@@ -54,32 +56,32 @@ $profile = $db->getUser($_SESSION['user']);
                     </a>
                 </div>
                 <ul class="space-y-6">
-                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3">
+                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3 hover:shadow-lg border-gray-200">
                         <a href="#" class="flex items-center text-lg gap-2">
                             <i class="fa fa-home menu-icon"></i>
                             Dashboard
                         </a>
                     </li>
-                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3">
+                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3 hover:shadow-lg border-gray-200">
                         <a href="#" class="flex items-center text-lg gap-2">
                             <i class="fa fa-chart-line menu-icon"></i>
                             Markets
                         </a>
                     </li>
-                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3">
+                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3 hover:shadow-lg border-gray-200">
                         <a href="#" class="flex items-center text-lg gap-2">
                             <i class="fa fa-chart-line menu-icon"></i>
                             Trade
                         </a>
                     </li>
-                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3">
+                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3 hover:shadow-lg border-gray-200">
                         <a href="#" class="flex items-center text-lg gap-2">
                             <i class="fa fa-user menu-icon"></i>
                             Profile
                         </a>
                     </li>
                     <li class=" border-t border-gray-200 my-8"></li>
-                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3">
+                    <li class="bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-lg px-2 py-3 hover:shadow-lg border-gray-200">
                         <a href="#" class="flex items-center text-lg gap-2">
                             <i class="fa fa-sign-out menu-icon"></i>
                             Logout
@@ -104,7 +106,7 @@ $profile = $db->getUser($_SESSION['user']);
             <div class="flex items-center justify-between px-2 py-4">
                 <div class="flex items-center">
                     <div class="w-10 h-10 bg-orange-500 rounded-full mr-3 flex items-center justify-center user-initials">
-                        <span class="text-black font-semibold text-sm"><?php echo $profile['fullname'].explode(" ", $profile['fullname'])[0][0].explode(" ", $profile['fullname'])[1][0]; ?></span>
+                        <span class="text-black font-semibold text-sm"><?php echo explode(" ", $profile['fullname'])[0][0].explode(" ", $profile['fullname'])[1][0]; ?></span>
                     </div>
                     <div>
                         <h2 class="font-semibold text-gray-900 user-name"><?php echo $profile['fullname']; ?></h2>
