@@ -1,17 +1,17 @@
 <?php
-$DB_PARAMS = [
-    "host"=>"localhost",
-    "username"=>"root",
-    "password"=>"root",
-    "database_name"=>"copytrendx"
-];
-
 // $DB_PARAMS = [
 //     "host"=>"localhost",
-//     "username"=>"u279230863_copytrend",
-//     "password"=>"NzwPqemiL0k?",
-//     "database_name"=>"u279230863_copytrend"
+//     "username"=>"root",
+//     "password"=>"root",
+//     "database_name"=>"copytrendx"
 // ];
+
+$DB_PARAMS = [
+    "host"=>"localhost",
+    "username"=>"u279230863_copytrend",
+    "password"=>"NzwPqemiL0k?",
+    "database_name"=>"u279230863_copytrend"
+];
 
 class Database {
     private $conn;
