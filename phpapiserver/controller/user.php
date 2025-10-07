@@ -113,18 +113,17 @@ class User
         $type = $data['type'];
         $proof = isset($data['payproof'])?$data['payproof']:'';
         $fee = $data['fee'];
-        $email = $data['email'];
 
         $new = $this->db->addData('transactions', [
             "amount" => $amount,
             "userid" => $user,
+            "wallet" => $data['wallet'],
             "description" => $description,
             "method" => $gateway,
             "type" => $type,
             "fee" => $fee,
             "tranx_id" => uniqid(),
             "proof"=>$proof,
-            "email"=>$email,
             "status"=>$status,
             "createdAt"=>date("d F Y")
         ]);
@@ -1067,6 +1066,38 @@ class User
             ];
         }
     }
+
+    function getTickets($data)
+    {
+        $user = $this->getUserByID($data['user']);
+        if ($user) {
+            $tickets = $this->db->select('ticket', [
+                "select" => "*",
+                "logic" => [
+                    "data" => [
+                        "user" => $data['user']
+                    ]
+                ]
+            ]);
+            if ($tickets) {
+                return [
+                    "status" => "success",
+                    "message" => "Ticket fetched",
+                    "tickets" => $tickets
+                ];
+            } else {
+                return [
+                    "status" => "Error",
+                    "message" => "Unable to fetch Ticket"
+                ];
+            }
+        } else {
+            return [
+                "status" => "Error",
+                "message" => "User not found"
+            ];
+        }
+    }
     
     function WalletExchange($data)
     {
@@ -1292,8 +1323,6 @@ class User
                 "message" => "User not found"
             ];
         }
-        
-        
     }
     
     function withdraw_cot_code($data) {
@@ -1444,7 +1473,56 @@ class User
             ];
         }
     }
+
+    public function trade($data)
+    {
+        // var_dump($data);
+        $user = $this->getUserByID($data['user']);
+        // check if user trading balance is greater than amount
+        if($user['trading_balance'] < $data['amount']) {
+            return [
+                "status" => "Error",
+                "message" => "Insufficient balance"
+            ];
+        }
+
+        $newTrade = $this->db->addData('trade', [
+            "user_id" => $data['user'],
+            "coin" => $data['coin'],
+            "amount" => $data['amount'],
+            "type" => $data['type']??'Buy',
+            "leverage" => $data['leverage']??'1x',
+            "time" => $data['time']??'1m',
+            "margin" => $data['margin']??'75%',
+            "take_profit" => $data['tp']??'100%',
+            "stop_loss" => $data['sl']??'100%',
+            "created_at" => date('Y-m-d H:i:s')
+        ]);
+
+        if($newTrade) {
+            $this->updateOne([
+                "table" => 'users',
+                "column" => 'trading_balance',
+                "value" => (float)$user['trading_balance'] - (float)$data['amount'],
+                "selector" => "userid",
+                "selector_value" => $data['user']
+            ]);
+            return [
+                "status" => "success",
+                "message" => "Trade successful"
+            ];
+        } else {
+            return [
+                "status" => "Error",
+                "message" => "Trade failed"
+            ];
+        }
+
+
+    }
 }
+
+
 
  require_once 'smtpmessaging.php';
  require_once 'utility.php';

@@ -1,6 +1,6 @@
 <?php
 define('SERVER_PATH', dirname(__FILE__, 3));
-define('UPLOADS_FOLDER', SERVER_PATH.'/user/uploads/');
+define('UPLOADS_FOLDER', SERVER_PATH.'/dashboard/uploads/');
 
 
 class Utility {

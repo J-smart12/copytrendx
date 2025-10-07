@@ -1,58 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Trading App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="config/manifiest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <style>
-        /* Custom styles for the mobile frame */
-        .screen {
-            background: #f5f5f5;
-            position: relative;
-        }
-
-        .balance-bg {
-            background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
-        }
-    </style>
-</head>
+<?php 
+require_once '../includes/header.php';
+?>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen overflow-hidden">
-    <div class="h-screen"></div>
+    <?php include '../includes/sidebar_navigation.php'; ?>
     <div class="screen h-full w-full flex flex-col overflow-hidden">
         <div class="main flex-1 flex flex-col overflow-auto">
-            <!-- Header -->
-            <div class="flex items-center justify-between px-2 py-4">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-orange-500 rounded-full mr-3 flex items-center justify-center">
-                        <span class="text-black font-semibold text-sm">CS</span>
-                    </div>
-                    <div>
-                        <h2 class="font-semibold text-gray-900">Chad Smith</h2>
-                        <p class="text-sm text-gray-500">Follow Trader</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 17h5l-5 5-5-5h5v-12">
-                        </path>
-                    </svg>
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16">
-                        </path>
-                    </svg>
-                </div>
-            </div>
-
+            <?php include '../includes/top_header.php'; ?>
 
             <div class="screen">
                 <!-- Settings Screen -->
@@ -64,8 +18,8 @@
                                 style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 48%22><circle cx=%2224%22 cy=%2224%22 r=%2224%22 fill=%22%23d4d4d8%22/><circle cx=%2224%22 cy=%2218%22 r=%228%22 fill=%22%23525252%22/><ellipse cx=%2224%22 cy=%2240%22 rx=%2212%22 ry=%2210%22 fill=%22%23525252%22/></svg>'); background-size: cover;">
                             </div>
                             <div>
-                                <div class="text-white font-medium">elbikbulatoff@gmail.com</div>
-                                <div class="text-gray-400 text-sm">UID: 1424903002</div>
+                                <div class="text-white font-medium"><?php echo $profile['fullname']; ?></div>
+                                <div class="text-gray-400 text-sm">UID: <?php echo $profile['userid']; ?></div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +27,7 @@
                     <!-- Security Settings -->
                     <div class="mb-6">
                         <h3 class="text-dark text-md font-bold mb-3">Security settings</h3>
-                        <div class="bg-gray-800 rounded-xl p-4 cursor-pointer" onclick="showScreen('password_security')">
+                        <div class="bg-gray-800 rounded-xl p-4 cursor-pointer" onclick="showScreen('update_password')">
                             <div class="flex items-center justify-between">
                                 <span class="text-white">Security</span>
                                 <div class="flex items-center">
@@ -173,7 +127,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <div class="text-gray-400 text-sm">UID</div>
-                                    <div class="text-white">1424903002</div>
+                                    <div class="text-white"><?php echo $profile['userid']; ?></div>
                                 </div>
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -186,8 +140,8 @@
                         <div class="bg-gray-800 rounded-xl p-4">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-gray-400 text-sm">Nickname</div>
-                                    <div class="text-white">Designfox</div>
+                                    <div class="text-gray-400 text-sm">Name</div>
+                                    <div class="text-white"><?php echo $profile['fullname']; ?></div>
                                 </div>
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -201,7 +155,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <div class="text-gray-400 text-sm">Email</div>
-                                    <div class="text-white">elbikbulatoff@gmail.com</div>
+                                    <div class="text-white"><?php echo $profile['email']; ?></div>
                                 </div>
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -214,15 +168,15 @@
 
                     <!-- Log out button -->
                     <div class="px-4">
-                        <button
+                        <a href="../logout"
                             class="w-full bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl font-medium transition-colors">
                             Log out
-                        </button>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Profile Screen -->
-                <div id="password_security" class="px-2 pt-4 hidden">
+                <div id="updatePasswordScreen" class="px-2 pt-4 hidden">
                     <!-- Back Button -->
                     <div class="flex items-center mb-8">
                         <svg class="w-6 h-6 text-dark cursor-pointer" fill="none" stroke="currentColor"
@@ -237,12 +191,13 @@
                     </div>
 
                     <!-- Profile Details -->
-                    <div class="space-y-4 mb-8">
+                    <form class="space-y-4 mb-8" id="update_password">
+                        <input type="hidden" name="userid" id="userid" value="<?php echo $profile['userid']; ?>">
                         <div class="bg-gray-800 rounded-xl p-4">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-gray-400 text-sm">UID</div>
-                                    <div class="text-white">1424903002</div>
+                                    <div class="text-gray-400 text-sm">Old Password</div>
+                                    <input type="password" name="old_password" id="old_password" class="w-full bg-gray-800 rounded-xl p-4">
                                 </div>
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -255,8 +210,8 @@
                         <div class="bg-gray-800 rounded-xl p-4">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-gray-400 text-sm">Nickname</div>
-                                    <div class="text-white">Designfox</div>
+                                    <div class="text-gray-400 text-sm">New Password</div>
+                                    <input type="password" name="new_password" id="new_password" class="w-full bg-gray-800 rounded-xl p-4">
                                 </div>
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -269,8 +224,8 @@
                         <div class="bg-gray-800 rounded-xl p-4">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-gray-400 text-sm">Email</div>
-                                    <div class="text-white">elbikbulatoff@gmail.com</div>
+                                    <div class="text-gray-400 text-sm">Confirm Password</div>
+                                    <input type="password" name="confirm_password" id="confirm_password" class="w-full bg-gray-800 rounded-xl p-4">
                                 </div>
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -279,80 +234,38 @@
                                 </svg>
                             </div>
                         </div>
-                    </div>
+                        <button type="submit" class="w-full bg-gray-700 hover:bg-gray-600 text-white py-4 rounded-xl font-medium transition-colors">Update Password</button>
+                    </form>
                 </div>
             </div>
 
         </div>
 
         <!-- Bottom Navigation -->
-        <div class="left-0 right-0 bg-gray-900 p-4">
-            <div class="flex justify-between items-center">
-                <div class="flex flex-col items-center">
-                    <a href="./index.html" class="w-10 flex items-center justify-center mb-1">
-                        <i class="fa fa-home text-white"></i>
-                    </a>
-                    <!-- <span class="text-white">Home</span> -->
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <a href="./markets.html" class="w-10 flex items-center justify-center mb-1">
-                        <i class="fa fa-shop text-white"></i>
-                    </a>
-                    <!-- <span class="text-white">Markets</span> -->
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <a href="./trade.html" class="w-10 flex items-center justify-center mb-1">
-                        <i class="fa fa fa-line-chart fa-1x text-white"></i>
-                    </a>
-                    <!-- <span class="text-white">Trade</span> -->
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <a href="./profile.html" class="w-10 flex items-center justify-center mb-1">
-                        <i class="fa fa-user text-white"></i>
-                    </a>
-                    <!-- <span class="text-white">Profile</span> -->
-                </div>
-            </div>
-        </div>
+        <?php include '../includes/bottom_navigation.php'; ?>
     </div>
-    <!-- Jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
     <script>
         function showScreen(screen) {
             const settingsScreen = document.getElementById('settingsScreen');
             const profileScreen = document.getElementById('profileScreen');
+            const updatePasswordScreen = document.getElementById('updatePasswordScreen');
 
             if (screen === 'settings') {
                 settingsScreen.classList.remove('hidden');
                 profileScreen.classList.add('hidden');
+                updatePasswordScreen.classList.add('hidden');
             } else if (screen === 'profile') {
                 settingsScreen.classList.add('hidden');
                 profileScreen.classList.remove('hidden');
+                updatePasswordScreen.classList.add('hidden');
+            } else if (screen === 'update_password') {
+                settingsScreen.classList.add('hidden');
+                profileScreen.classList.add('hidden');
+                updatePasswordScreen.classList.remove('hidden');
             }
         }
-        // Toggle balance visibility
-        if (localStorage.getItem("balance") === "hidden") {
-            $("#tb").hide();
-            $("#tbn").show();
-        } else {
-            $("#tb").show();
-            $("#tbn").hide();
-        }
-        function toggleBalance() {
-            // use local storage to save the state
-            if (localStorage.getItem("balance") === "hidden") {
-                localStorage.setItem("balance", "visible");
-                $("#tb").show();
-                $("#tbn").hide();
-            } else {
-                localStorage.setItem("balance", "hidden");
-                $("#tb").hide();
-                $("#tbn").show();
-            }
-        }
+        
 
     </script>
 </body>

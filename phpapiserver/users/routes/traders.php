@@ -19,3 +19,10 @@ $routes->post('/user/followTrader', function($routes, $logic) {
     $traders = $logic->followTraders($data);
     echo json_encode($traders);
 });
+
+$routes->post('/user/trade', function($routes, $logic) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    
+    $traders = $logic->trade($data);
+    echo json_encode($traders);
+});

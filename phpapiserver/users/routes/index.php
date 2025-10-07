@@ -68,7 +68,20 @@ $routes->post('/user/plans', function($routes, $logic) {
 });
 
 
+$routes->post('/user/tickets', function($routes, $logic) {
+    // $data = json_decode(file_get_contents('php://input'), true);
+    
+    $user = $logic->getTickets();
+    echo json_encode($user);
+});
 
+
+$routes->post('/user/tickets/single', function($routes, $logic) {
+    $data = json_decode(file_get_contents('php://input'), true);
+    
+    $user = $logic->getTickets($data);
+    echo json_encode($user);
+});
 
 
 
